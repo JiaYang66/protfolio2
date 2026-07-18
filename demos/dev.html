@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>吴子轩 · Full-Stack Developer</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0d1117;--card:#161b22;--border:#30363d;--text:#c9d1d9;--accent:#58a6ff;--green:#3fb950}
+body{font-family:"SF Mono","Cascadia Code","Fira Code","Microsoft YaHei",monospace;background:var(--bg);color:var(--text);line-height:1.6;font-size:14px}
+.terminal{border:1px solid var(--border);border-radius:8px;overflow:hidden;max-width:800px;margin:3rem auto}
+.terminal .bar{background:#161b22;padding:8px 12px;display:flex;gap:6px;border-bottom:1px solid var(--border)}
+.terminal .bar span{width:10px;height:10px;border-radius:50%}
+.terminal .bar span:nth-child(1){background:#ff5f57}.terminal .bar span:nth-child(2){background:#febc2e}.terminal .bar span:nth-child(3){background:#28c840}
+.terminal .body{padding:1.5rem;font-size:13px;line-height:1.8}
+.prompt{color:var(--green)}.cmd{color:var(--accent)}.output{color:var(--text)}.comment{color:#8b949e}
+.name{font-size:1.8rem;font-weight:700;color:var(--accent)}
+.title{color:#8b949e;margin:.5rem 0}
+.tags{display:flex;gap:.4rem;flex-wrap:wrap;margin:1rem 0}
+.tag{background:#1f2937;color:var(--accent);padding:2px 8px;border-radius:3px;font-size:11px;border:1px solid var(--border)}
+.section{max-width:800px;margin:2rem auto;padding:0 1.5rem}
+.section h2{font-size:13px;color:var(--accent);font-weight:400;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.section h2::before{content:'>';color:var(--green)}
+.projects{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.8rem}
+.project{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:1rem;transition:.2s}
+.project:hover{border-color:var(--accent)}
+.project h3{font-size:13px;color:var(--accent);margin-bottom:4px}
+.project p{font-size:12px;color:#8b949e}
+.project .meta{font-size:11px;color:#484f58;margin-top:.5rem}
+.contact{display:flex;gap:2rem;justify-content:center;font-size:12px;color:#8b949e;margin-top:1rem}
+.contact span{display:flex;align-items:center;gap:4px}
+@media(max-width:768px){.projects{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="terminal">
+  <div class="bar"><span></span><span></span><span></span></div>
+  <div class="body">
+    <div class="name">wuzixuan@dev:~$</div>
+    <div class="title">Full-Stack Developer · Independent Builder</div>
+    <div class="tags"><span class="tag">React</span><span class="tag">Vue</span><span class="tag">Node.js</span><span class="tag">Python</span><span class="tag">PostgreSQL</span><span class="tag">Docker</span><span class="tag">AWS</span></div>
+    <div class="contact"><span>150-0000-0003</span><span>wuzixuan@dev.cn</span><span>深圳</span></div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Open Source</h2>
+  <div class="projects">
+    <div class="project"><h3>📦 react-dashboard</h3><p>企业级后台管理模板</p><div class="meta">⭐ 280 · React · TypeScript</div></div>
+    <div class="project"><h3>📦 py-task-scheduler</h3><p>Python 分布式任务调度</p><div class="meta">⭐ 150 · Python · Redis</div></div>
+    <div class="project"><h3>📦 vue3-components</h3><p>Vue3 业务组件库</p><div class="meta">⭐ 92 · Vue3 · Vite</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Projects</h2>
+  <div class="projects">
+    <div class="project"><h3>SaaS 协作工具</h3><p>实时文档协作平台</p><div class="meta">React + WebSocket + PostgreSQL</div></div>
+    <div class="project"><h3>AI 客服系统</h3><p>基于大模型的智能客服</p><div class="meta">Python + LangChain + FastAPI</div></div>
+    <div class="project"><h3>电商数据中台</h3><p>全链路数据看板</p><div class="meta">Vue3 + ECharts + Go</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>About</h2>
+  <p style="color:#8b949e;font-size:13px;max-width:600px">5年全栈开发经验。主导3个SaaS产品从0到1。追求简洁可维护的代码架构。热爱开源。</p>
+</div>
+
+</body>
+</html>

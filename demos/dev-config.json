@@ -1,0 +1,20 @@
+{
+  "name": "吴子轩",
+  "title": "全栈工程师 · 独立开发者",
+  "bio": "代码即产品，产品即名片",
+  "phone": "150-0000-0003",
+  "email": "wuzixuan@dev.cn",
+  "location": "深圳",
+  "about": "5年全栈开发经验，主攻React/Node.js/Python技术栈。主导过3个从0到1的SaaS产品，GitHub累计500+ Star。热爱开源，追求简洁可维护的代码架构。",
+  "skills": "React,Vue,Node.js,Python,PostgreSQL,Docker,AWS,CI/CD,Linux",
+  "social": {"douyin":"","bilibili":""},
+  "videos":[
+    {"bvid":"BV18zKn6ZEVN","title":"开源项目 — 技术架构讲解","duration":"56s","type":"横屏","category":"技术分享","tags":"开源,架构"},
+    {"bvid":"BV1SzKn6ZEWe","title":"产品Demo — 实时协作工具","duration":"1:02","type":"横屏","category":"产品演示","tags":"Demo,SaaS"}
+  ],
+  "videoGroups":[
+    {"label":"技术分享 · 横屏","layout":"横屏","ids":[0]},
+    {"label":"产品演示 · 横屏","layout":"横屏","ids":[1]}
+  ],
+  "photos":{"GitHub贡献热力图":["bf1082d13931d277ad7d7a81e0bede84.jpg"],"产品截图":["未命名_1.1.1.jpg","未命名_1.3.1.jpg","未命名_1.5.1.jpg"]}
+}

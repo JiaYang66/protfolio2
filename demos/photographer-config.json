@@ -1,0 +1,22 @@
+{
+  "name": "苏晴",
+  "title": "人像摄影师 · 约拍/写真/婚礼跟拍",
+  "bio": "捕捉真实的情绪与光",
+  "phone": "177-0000-0004",
+  "email": "suqing@photo.cn",
+  "location": "上海",
+  "about": "专注人像摄影6年，擅长自然光人像、婚礼跟拍与商业肖像。作品曾发表于《人像摄影》杂志。每张照片背后都是一个独特的故事，我的工作是让它被看见。",
+  "skills": "人像摄影,婚礼跟拍,商业肖像,LR后期,胶片摄影,场景布光,情绪捕捉,写真约拍",
+  "social": {"douyin":"","bilibili":"","xiaohongshu":""},
+  "videos":[
+    {"bvid":"BV141Kn69ENg","title":"婚礼跟拍 — 一天的光与爱","duration":"29s","type":"横屏","category":"婚礼","tags":"婚礼,纪实"},
+    {"bvid":"BV1x1Kn69EQc","title":"旅拍写真 — 海岸线","duration":"15s","type":"横屏","category":"写真","tags":"旅拍,写真"},
+    {"bvid":"BV1QqKn6FENc","title":"商业肖像 — 幕后花絮","duration":"40s","type":"横屏","category":"商业","tags":"肖像,幕后"}
+  ],
+  "videoGroups":[
+    {"label":"婚礼 · 横屏","layout":"横屏","ids":[0]},
+    {"label":"写真 · 横屏","layout":"横屏","ids":[1]},
+    {"label":"商业 · 横屏","layout":"横屏","ids":[2]}
+  ],
+  "photos":{"婚礼纪实":["bf1082d13931d277ad7d7a81e0bede84.jpg","未命名_1.1.1.jpg"],"人像写真":["未命名_1.3.1.jpg","未命名_1.5.1.jpg","未命名_1.7.1.jpg"],"胶片作品":["未命名_1.10.1.jpg","未命名_1.17.1.jpg"]}
+}

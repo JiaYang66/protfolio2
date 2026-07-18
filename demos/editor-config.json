@@ -1,0 +1,25 @@
+{
+  "name": "周野",
+  "title": "剪辑师 · 短视频导演",
+  "bio": "用节奏讲故事",
+  "phone": "186-0000-0002",
+  "email": "zhouye@edit.cn",
+  "location": "成都",
+  "about": "专注短视频剪辑与内容创作，擅长抖音/B站/小红书多平台内容适配。服务品牌包括美的、三只松鼠、茶颜悦色等。从素材到成片，用剪辑让内容活起来。",
+  "skills": "PR剪辑,达芬奇调色,AE特效,剪映,节奏控制,文案策划,音效设计,多平台适配",
+  "social": {"douyin":"","bilibili":""},
+  "videos":[
+    {"bvid":"BV141Kn69EEY","title":"品牌TVC — 情感叙事剪辑","duration":"41s","type":"横屏","category":"商业剪辑","tags":"品牌,TVC,叙事"},
+    {"bvid":"BV141Kn69Ep1","title":"产品广告 — 快节奏剪辑","duration":"53s","type":"横屏","category":"商业剪辑","tags":"广告,快节奏"},
+    {"bvid":"BV1QqKn6FEMA","title":"抖音信息流 — 高转化剪辑","duration":"59s","type":"竖屏","category":"信息流","tags":"抖音,投流"},
+    {"bvid":"BV1hqKn6FE4g","title":"带货视频 — 口播+产品混剪","duration":"53s","type":"竖屏","category":"信息流","tags":"带货,混剪"},
+    {"bvid":"BV1DqKn6FEr2","title":"促销短片 — 15秒快闪","duration":"22s","type":"竖屏","category":"信息流","tags":"促销,快闪"},
+    {"bvid":"BV1QqKn6FENc","title":"Vlog旅拍 — 调色与节奏","duration":"40s","type":"横屏","category":"个人创作","tags":"调色,Vlog"}
+  ],
+  "videoGroups":[
+    {"label":"商业剪辑 · 横屏","layout":"横屏","ids":[0,1]},
+    {"label":"信息流 · 竖屏","layout":"竖屏","ids":[2,3,4]},
+    {"label":"个人创作 · 横屏","layout":"横屏","ids":[5]}
+  ],
+  "photos":{"作品海报":["bf1082d13931d277ad7d7a81e0bede84.jpg","未命名_1.1.1.jpg"],"调色前后":["未命名_1.3.1.jpg","未命名_1.5.1.jpg"]}
+}

@@ -1,0 +1,21 @@
+{
+  "name": "林悦然",
+  "title": "UI/UX 设计师 · 视觉体验创新",
+  "bio": "为产品注入美与秩序",
+  "phone": "139-0000-0001",
+  "email": "linyueran@design.cn",
+  "location": "杭州",
+  "about": "专注移动端与Web端UI/UX设计，服务过金融、电商、教育等行业。擅长从0到1搭建设计系统，追求像素级的精致与用户体感的流畅。相信好的设计自己会说话。",
+  "skills": "Figma,Sketch,UI设计,UX研究,设计系统,动效设计,品牌设计,原型交互",
+  "social": {"douyin":"","bilibili":"","xiaohongshu":""},
+  "videos":[
+    {"bvid":"BV1QqKn6FENc","title":"App动效设计 — 流畅交互演示","duration":"40s","type":"横屏","category":"动效设计","tags":"UI,动效"},
+    {"bvid":"BV18zKn6ZEHj","title":"品牌VI设计 — 从Logo到应用","duration":"1:32","type":"横屏","category":"品牌设计","tags":"品牌,VI"},
+    {"bvid":"BV18zKn6ZEVN","title":"设计系统展示 — 组件库与应用","duration":"56s","type":"横屏","category":"设计系统","tags":"组件库"},
+    {"bvid":"BV1SzKn6ZEWe","title":"B端后台界面 — 数据可视化","duration":"1:02","type":"横屏","category":"B端设计","tags":"后台,数据"}
+  ],
+  "videoGroups":[
+    {"label":"作品展示 · 横屏","layout":"横屏","ids":[0,1,2,3]}
+  ],
+  "photos":{"UI设计作品":["bf1082d13931d277ad7d7a81e0bede84.jpg","未命名_1.1.1.jpg","未命名_1.3.1.jpg"],"品牌设计":["未命名_1.5.1.jpg","未命名_1.7.1.jpg"],"插画习作":["未命名_1.10.1.jpg","未命名_1.17.1.jpg"]}
+}

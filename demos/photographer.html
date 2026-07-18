@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>苏晴 · Portrait Photographer</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f5f0eb;--text:#2c2416;--muted:#8c7b6b;--accent:#c4754b}
+body{font-family:"Georgia","Noto Serif SC","STSong",serif;background:var(--bg);color:var(--text)}
+.hero{height:100vh;display:flex;align-items:center;justify-content:center;position:relative;flex-direction:column;text-align:center}
+.hero h1{font-size:4rem;font-weight:400;letter-spacing:12px;color:#1a1008}
+.hero .sub{font-size:1rem;color:var(--muted);letter-spacing:4px;margin:.8rem 0 2rem;font-style:italic}
+.hero .contact{font-size:.8rem;color:var(--muted);letter-spacing:1px}
+.hero .scroll{position:absolute;bottom:2rem;color:var(--muted);font-size:.7rem;letter-spacing:2px;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.gallery{column-count:3;column-gap:.8rem;padding:1rem;max-width:1400px;margin:0 auto}
+.gallery .item{break-inside:avoid;margin-bottom:.8rem;border-radius:4px;overflow:hidden;cursor:pointer;transition:.3s}
+.gallery .item:hover{opacity:.85}
+.gallery .item img{width:100%;display:block}
+.gallery .item.landscape img{aspect-ratio:16/10}
+.gallery .item.portrait img{aspect-ratio:3/4}
+.section{text-align:center;padding:4rem 1.5rem}
+.section h2{font-size:1.6rem;font-weight:400;letter-spacing:4px;margin-bottom:1rem}
+.section p{max-width:500px;margin:0 auto;font-size:.9rem;color:var(--muted);line-height:2;font-style:italic}
+.video-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:1.2rem;max-width:900px;margin:0 auto}
+.video-grid iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:4px}
+.footer{text-align:center;padding:3rem;color:var(--muted);font-size:.75rem;letter-spacing:2px}
+@media(max-width:768px){.gallery{column-count:2}.hero h1{font-size:2.4rem}.video-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>苏 晴</h1>
+  <p class="sub">Portrait Photographer · 捕捉真实的情绪与光</p>
+  <div class="contact">177-0000-0004 · suqing@photo.cn · 上海</div>
+  <div class="scroll">↓ 作品浏览</div>
+</div>
+
+<div class="gallery">
+  <div class="item landscape"><img src="photos/产品拍摄/bf1082d13931d277ad7d7a81e0bede84.jpg" onerror="this.parentElement.remove()"></div>
+  <div class="item portrait"><img src="photos/产品拍摄/未命名_1.1.1.jpg" onerror="this.parentElement.remove()"></div>
+  <div class="item landscape"><img src="photos/产品拍摄/未命名_1.3.1.jpg" onerror="this.parentElement.remove()"></div>
+  <div class="item portrait"><img src="photos/产品拍摄/未命名_1.5.1.jpg" onerror="this.parentElement.remove()"></div>
+  <div class="item landscape"><img src="photos/产品拍摄/未命名_1.7.1.jpg" onerror="this.parentElement.remove()"></div>
+  <div class="item portrait"><img src="photos/产品拍摄/未命名_1.10.1.jpg" onerror="this.parentElement.remove()"></div>
+  <div class="item landscape"><img src="photos/产品拍摄/未命名_1.17.1.jpg" onerror="this.parentElement.remove()"></div>
+</div>
+
+<div class="section">
+  <h2>影像背后</h2>
+  <p>专注人像摄影六年。擅长自然光人像、婚礼跟拍与商业肖像。每张照片背后都是一个独特的故事，我的工作是让它被看见。</p>
+</div>
+
+<div class="section" style="padding-top:0">
+  <h2>影像短片</h2>
+  <div class="video-grid">
+    <iframe src="https://player.bilibili.com/player.html?bvid=BV141Kn69ENg&page=1&high_quality=1&autoplay=0" allowfullscreen></iframe>
+    <iframe src="https://player.bilibili.com/player.html?bvid=BV1x1Kn69EQc&page=1&high_quality=1&autoplay=0" allowfullscreen></iframe>
+  </div>
+</div>
+
+<div class="footer">SU QING · PHOTOGRAPHER © 2026</div>
+</body>
+</html>
