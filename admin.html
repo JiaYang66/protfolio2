@@ -63,8 +63,9 @@ textarea{height:70px;resize:vertical}
 </head>
 <body>
 
-<div class="topbar">
+<div class="topbar"><div style=display:flex;align-items:center;gap:.5rem>
   <h1>📝 作品集管理后台</h1>
+  <input id=tokenInput type=password placeholder="GitHub Token" style="width:280px;padding:6px 10px;background:#0d1117;border:1px solid #30363d;border-radius:4px;color:#c9d1d9;font-size:.8rem" onchange="TOKEN=this.value">
   <button onclick="publish()" title="发布到 GitHub">🚀 发布更新</button>
 </div>
 
