@@ -1,0 +1,27 @@
+{
+  "name": "姓名",
+  "title": "职业定位，如 视觉内容创作者",
+  "bio": "一句话介绍自己，30字以内",
+  "phone": "手机号",
+  "email": "邮箱",
+  "location": "城市",
+  "about": "个人介绍，100字以内。写清楚你做什么、擅长什么、有什么经验。",
+  "skills": "产品摄影,PR剪辑,无人机航拍,Photoshop,抖音运营",
+  "avatar": "",
+  "social": {
+    "douyin": "",
+    "bilibili": "",
+    "xiaohongshu": ""
+  },
+  "photos": {
+    "产品拍摄": ["photo1.jpg","photo2.jpg","photo3.jpg"],
+    "川西": ["chuanxi1.jpg","chuanxi2.jpg"],
+    "海南": ["hainan1.jpg"]
+  },
+  "videos": [
+    {"bvid":"BV1hqKn6FECp","title":"作品标题","duration":"35s","type":"竖屏","category":"产品宣传","tags":"产品摄影,布光"}
+  ],
+  "videoGroups": [
+    {"label":"产品宣传片 · 横屏","layout":"横屏","ids":[0]}
+  ]
+}

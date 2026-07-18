@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>作品集</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#080808;--card:#111;--border:#1e1e1e;--text:#b8b8b8;--muted:#666;--accent:#e08850}
+body{font-family:"Noto Serif SC","STSong","Microsoft YaHei",serif;background:var(--bg);color:var(--text);line-height:1.7}
+.container{max-width:1300px;margin:0 auto;padding:0 2.5rem}
+.hero{text-align:center;padding:5rem 1.5rem 2.5rem}
+.hero .avatar{width:80px;height:80px;border-radius:50%;object-fit:cover;border:1px solid var(--border);margin-bottom:1rem}
+.hero .brand{font-size:.72rem;letter-spacing:5px;color:var(--accent);text-transform:uppercase;margin-bottom:1rem}
+.hero h1{font-size:3rem;font-weight:300;letter-spacing:8px;color:#e0e0e0}
+.hero .role{font-size:.95rem;color:var(--muted);letter-spacing:3px;margin:.5rem 0 1.2rem}
+.hero .bio{font-size:.85rem;color:var(--muted);max-width:500px;margin:.8rem auto}
+.hero .contact{display:flex;gap:2rem;justify-content:center;font-size:.82rem;color:var(--muted);flex-wrap:wrap;margin-top:1rem}
+.hero .contact a{color:var(--accent);text-decoration:none}
+.hero .skills{margin-top:1.2rem;display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.hero .skills span{font-size:.72rem;padding:4px 12px;border-radius:2px;background:#111;color:var(--muted);border:1px solid var(--border)}
+nav{position:sticky;top:0;z-index:10;background:rgba(8,8,8,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);display:flex;justify-content:center;gap:3rem;padding:1.2rem 0}
+nav a{color:var(--muted);text-decoration:none;font-size:.85rem;letter-spacing:2px;transition:.2s}
+nav a:hover,nav a.active{color:var(--accent)}
+section{padding:4rem 0}
+.sec-h{text-align:center;margin-bottom:2.5rem}
+.sec-h .num{font-size:.72rem;color:var(--accent);letter-spacing:3px;display:block;margin-bottom:.5rem}
+.sec-h h2{font-size:1.8rem;font-weight:300;letter-spacing:3px;color:#ddd}
+.sub{text-align:center;font-size:.82rem;color:var(--accent);letter-spacing:2px;margin:2.5rem 0 1.5rem}
+.vg-land{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:1.5rem}
+.vg-port{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.2rem;justify-content:center}
+.v-card{background:var(--card);border-radius:8px;overflow:hidden;border:1px solid var(--border);transition:.25s}
+.v-card:hover{border-color:#333;transform:translateY(-2px)}
+.v-card .player{position:relative;background:#0a0a0a}
+.v-card.landscape .player{aspect-ratio:16/9}
+.v-card.portrait .player{aspect-ratio:9/16}
+.v-card .player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.v-card .meta{padding:1rem 1.1rem}
+.v-card .meta h3{font-size:.95rem;font-weight:400;color:#ccc;margin-bottom:3px}
+.v-card .meta .info{font-size:.75rem;color:var(--muted)}
+.v-card .meta .tags{margin-top:7px}
+.tag{display:inline-block;padding:3px 10px;border-radius:2px;font-size:.68rem;margin:2px 5px 2px 0;background:#181818;color:var(--accent);border:1px solid #1e1e1e}
+.p-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem}
+.p-card{aspect-ratio:4/3;border-radius:6px;overflow:hidden;background:var(--card);cursor:zoom-in;border:1px solid var(--border);transition:.25s;position:relative}
+.p-card:hover{transform:scale(1.02);border-color:#444}
+.p-card img{width:100%;height:100%;object-fit:cover}
+.p-card .cap{position:absolute;bottom:0;left:0;right:0;padding:.8rem 1rem;background:linear-gradient(transparent,rgba(0,0,0,.8));opacity:0;transition:.25s}
+.p-card:hover .cap{opacity:1}
+.p-card .cap span{font-size:.72rem;color:#ddd}
+.about{max-width:700px;margin:0 auto;text-align:center}
+.about p{font-size:1rem;color:var(--muted);line-height:2.2}
+.lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.97);z-index:100;align-items:center;justify-content:center;cursor:zoom-out}
+.lb.on{display:flex}
+.lb img{max-width:92%;max-height:90%;border-radius:2px}
+.lb .x{position:absolute;top:2rem;right:2.5rem;font-size:2.5rem;color:#666;cursor:pointer}
+.ft{text-align:center;padding:4rem 0 3rem;color:#444;font-size:.78rem;border-top:1px solid var(--border);margin-top:2rem}
+.ft a{color:var(--accent);text-decoration:none}
+
+.edit-hint{position:fixed;bottom:1rem;right:1rem;background:var(--accent);color:#000;padding:8px 16px;border-radius:4px;font-size:.75rem;cursor:pointer;z-index:50;text-decoration:none;opacity:.7}
+.edit-hint:hover{opacity:1}
+
+@media(max-width:768px){.vg-land{grid-template-columns:1fr}.vg-port{grid-template-columns:repeat(2,1fr)}.p-grid{grid-template-columns:repeat(2,1fr)}.hero h1{font-size:1.8rem}nav{gap:1.5rem}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="brand">PORTFOLIO</div>
+  <h1 id="hero-name"></h1>
+  <p class="role" id="hero-title"></p>
+  <div class="contact" id="hero-contact"></div>
+  <div class="skills" id="hero-skills"></div>
+</div>
+
+<nav id="nav"></nav>
+<div class="container">
+  <section id="video-section"><div class="sec-h"><span class="num">01</span><h2>视频作品</h2></div><div id="video-groups"></div></section>
+  <section id="photo-section"><div class="sec-h"><span class="num">02</span><h2>摄影作品</h2></div><div id="photo-groups"></div></section>
+  <section id="about-section"><div class="sec-h"><span class="num">03</span><h2>关于</h2></div><div class="about"><p id="about-text"></p></div></section>
+</div>
+
+<div class="ft">
+  <p id="ft-name"></p><p style="margin-top:.5rem" id="ft-links"></p>
+</div>
+
+<div class="lb" id="lb" onclick="this.classList.remove('on')"><span class="x">&times;</span><img id="lbImg" onclick="event.stopPropagation()"></div>
+<a class="edit-hint" href="https://github.com/JiaYang66/portfolio2/blob/main/config.json" target="_blank">✏️ 编辑内容</a>
+
+<script>
+fetch('config.json').then(r=>r.json()).then(function(C){
+  document.title=C.name+' · 作品集';
+  document.getElementById('hero-name').textContent=C.name;
+  document.getElementById('hero-title').textContent=C.title||'';
+  document.getElementById('about-text').textContent=C.about||'';
+  document.getElementById('ft-name').textContent=C.name+' © '+new Date().getFullYear();
+
+  // Contact
+  var contact=document.getElementById('hero-contact');
+  if(C.phone) contact.innerHTML+='<span>'+C.phone+'</span>';
+  if(C.email) contact.innerHTML+='<span>'+C.email+'</span>';
+  if(C.location) contact.innerHTML+='<span>'+C.location+'</span>';
+  if(C.social){
+    var s=C.social;
+    if(s.bilibili) contact.innerHTML+='<a href="'+s.bilibili+'" target=_blank>B站主页</a>';
+    if(s.douyin) contact.innerHTML+='<a href="'+s.douyin+'" target=_blank>抖音主页</a>';
+    if(s.xiaohongshu) contact.innerHTML+='<a href="'+s.xiaohongshu+'" target=_blank>小红书主页</a>';
+  }
+
+  // Skills
+  var sk=document.getElementById('hero-skills');
+  if(C.skills) C.skills.split(',').forEach(function(s){sk.innerHTML+='<span>'+s.trim()+'</span>'});
+
+  // Nav
+  var nav=document.getElementById('nav');
+  nav.innerHTML='<a href=#video-section class=active>视频作品</a><a href=#photo-section>摄影作品</a><a href=#about-section>关于</a>';
+  document.querySelectorAll('nav a').forEach(function(a){a.addEventListener('click',function(){document.querySelectorAll('nav a').forEach(function(x){x.classList.remove('active')});this.classList.add('active')})});
+
+  // Videos
+  var vg=document.getElementById('video-groups');
+  var allVideos=C.videos||[];
+  var groups=C.videoGroups||[];
+  if(groups.length===0){
+    // Auto-group: all in one group
+    groups=[{label:'全部视频','layout':'横屏',ids:allVideos.map(function(_,i){return i})}];
+  }
+  groups.forEach(function(g){
+    var cls=g.layout==='竖屏'?'vg-port':'vg-land';
+    vg.innerHTML+='<div class=sub>'+g.label+'</div><div class='+cls+'>'+g.ids.map(function(i){return makeVCard(allVideos[i])}).join('')+'</div>';
+  });
+
+  // Photos
+  var pg=document.getElementById('photo-groups');
+  var photos=C.photos||{};
+  Object.keys(photos).forEach(function(cat){
+    pg.innerHTML+='<div class=sub>'+cat+'</div><div class=p-grid id=pg-'+cat.replace(/[^a-zA-Z0-9]/g,'')+'></div>';
+  });
+  // Render after DOM
+  setTimeout(function(){
+    Object.keys(photos).forEach(function(cat){
+      var grid=document.getElementById('pg-'+cat.replace(/[^a-zA-Z0-9]/g,''));
+      if(!grid) return;
+      photos[cat].forEach(function(f){
+        var c=document.createElement('div');
+        c.className='p-card';
+        c.onclick=function(){document.getElementById('lbImg').src='photos/'+cat+'/'+f;document.getElementById('lb').classList.add('on')};
+        c.innerHTML='<img src="photos/'+cat+'/'+f+'" onerror="this.parentElement.style.display=\'none\'"><div class=cap><span>'+f.replace(/\.[^.]+$/,'').substring(0,25)+'</span></div>';
+        grid.appendChild(c);
+      });
+    });
+  },0);
+
+  // Footer links
+  var fl=document.getElementById('ft-links');
+  if(C.social){
+    if(C.social.douyin) fl.innerHTML+='<a href="'+C.social.douyin+'">抖音</a> · ';
+    if(C.social.bilibili) fl.innerHTML+='<a href="'+C.social.bilibili+'">B站</a> · ';
+    if(C.social.xiaohongshu) fl.innerHTML+='<a href="'+C.social.xiaohongshu+'">小红书</a> · ';
+  }
+  fl.innerHTML+='<a href="https://github.com">GitHub</a>';
+
+  // Edit hint
+  var hint=document.querySelector('.edit-hint');
+  hint.href='https://github.com/JiaYang66/portfolio2/edit/main/config.json';
+  hint.textContent='✏️ 修改内容（点这里编辑 config.json）';
+
+}).catch(function(e){
+  document.body.innerHTML='<div style="text-align:center;padding:5rem;color:#888"><h2>加载失败</h2><p>请确保 config.json 文件存在于仓库根目录</p><p style="margin-top:1rem;font-size:.8rem">错误: '+e.message+'</p></div>';
+});
+
+var activeVid=null;
+function makeVCard(v){
+  if(!v) return '';
+  var tags=(v.tags||'').split(',').map(function(t){return '<span class=tag>'+t.trim()+'</span>';}).join('');
+  return '<div class="v-card '+(v.type==='竖屏'?'portrait':'landscape')+'"><div class=player><iframe src="https://player.bilibili.com/player.html?bvid='+v.bvid+'&page=1&high_quality=1&autoplay=0" allowfullscreen allow=autoplay></iframe></div><div class=meta><h3>'+v.title+'</h3><div class=info>'+(v.duration||'')+'</div><div class=tags>'+tags+'</div></div></div>';
+}
+
+document.addEventListener('click',function(e){
+  var c=e.target.closest('.v-card');
+  if(!c) return;
+  var f=c.querySelector('iframe');
+  if(!f) return;
+  if(activeVid&&activeVid!==f) activeVid.contentWindow&&activeVid.contentWindow.postMessage({type:'pause'},'*');
+  f.contentWindow&&f.contentWindow.postMessage({type:'play'},'*');
+  activeVid=f;
+});
+</script>
+</body>
+</html>
