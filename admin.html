@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>管理后台 · 作品集编辑</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#0d1117;color:#c9d1d9;padding:2rem}
+.container{max-width:800px;margin:0 auto}
+h1{font-size:1.3rem;margin-bottom:1.5rem;color:#58a6ff}
+.card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:1.2rem;margin-bottom:1rem}
+.card h2{font-size:1rem;color:#58a6ff;margin-bottom:.8rem;display:flex;align-items:center;gap:.5rem}
+.card h2 .del{font-size:.7rem;color:#da3633;cursor:pointer;margin-left:auto}
+label{display:block;font-size:.8rem;color:#8b949e;margin:.6rem 0 .3rem}
+input,textarea{width:100%;padding:8px 10px;background:#0d1117;border:1px solid #30363d;border-radius:4px;color:#c9d1d9;font-size:.85rem;font-family:inherit}
+textarea{height:60px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.row3{grid-template-columns:1fr 1fr 1fr}
+button{padding:8px 20px;background:#238636;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:.85rem;margin:4px}
+button:hover{background:#2ea043}
+button.danger{background:#da3633}
+button.secondary{background:#21262d;border:1px solid #30363d}
+.btns{display:flex;gap:.5rem;margin-top:1rem;flex-wrap:wrap}
+.output{background:#0d1117;border:1px solid #30363d;border-radius:4px;padding:1rem;font-size:.8rem;color:#8b949e;margin-top:1rem;max-height:300px;overflow:auto;white-space:pre-wrap;display:none}
+.token-hint{font-size:.75rem;color:#d2991d;margin-top:.4rem}
+.success{color:#3fb950;margin-top:.5rem;display:none}
+.add-btn{font-size:.8rem;color:#58a6ff;cursor:pointer;margin:8px 0;display:inline-block}
+.video-item,.photo-item{background:#0d1117;border:1px solid #30363d;border-radius:4px;padding:.8rem;margin:.5rem 0}
+.video-item .row{grid-template-columns:1fr 1fr 80px 100px 100px}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>📝 作品集编辑后台</h1>
+
+<div class="card">
+  <h2>基本信息</h2>
+  <div class="row">
+    <div><label>姓名</label><input id="name" placeholder="你的名字"></div>
+    <div><label>职业定位</label><input id="title" placeholder="如：视觉内容创作者"></div>
+  </div>
+  <div class="row">
+    <div><label>手机</label><input id="phone"></div>
+    <div><label>邮箱</label><input id="email"></div>
+  </div>
+  <div>
+    <label>城市</label><input id="location" placeholder="如：广东中山">
+  </div>
+  <div>
+    <label>个人介绍</label><textarea id="about" placeholder="100字以内..."></textarea>
+  </div>
+  <div>
+    <label>技能标签（逗号分开）</label><input id="skills" placeholder="如：产品摄影,PR剪辑,无人机航拍">
+  </div>
+</div>
+
+<div class="card">
+  <h2>📱 社交链接</h2>
+  <div class="row row3">
+    <div><label>抖音</label><input id="douyin" placeholder="抖音主页链接"></div>
+    <div><label>B站</label><input id="bilibili" placeholder="B站主页链接"></div>
+    <div><label>小红书</label><input id="xiaohongshu" placeholder="小红书主页链接"></div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>🎬 视频作品 <span class="add-btn" onclick="addVideo()">+ 添加视频</span></h2>
+  <div id="video-list"></div>
+</div>
+
+<div class="card">
+  <h2>📷 照片分类</h2>
+  <div id="photo-list"></div>
+  <span class="add-btn" onclick="addPhotoCat()">+ 添加分类</span>
+</div>
+
+<div class="card">
+  <h2>⚙️ 发布设置</h2>
+  <label>GitHub 仓库名</label>
+  <input id="repo" placeholder="如：JiaYang66/protfolio2">
+  <label>GitHub Token（需要 repo 权限）</label>
+  <input id="token" type="password" placeholder="ghp_xxxxxxxxxxxx">
+  <div class="token-hint">去 <a href="https://github.com/settings/tokens" target="_blank" style="color:#58a6ff">github.com/settings/tokens</a> 创建，勾选 repo</div>
+</div>
+
+<div class="btns">
+  <button onclick="generateJSON()">📄 生成 config.json（预览）</button>
+  <button onclick="publishToGitHub()">🚀 直接发布到 GitHub</button>
+  <button class="secondary" onclick="downloadJSON()">💾 下载 config.json</button>
+</div>
+
+<div class="success" id="msg"></div>
+<pre class="output" id="output"></pre>
+</div>
+
+<script>
+let videoCount=0;
+let photoCats=[];
+
+function addVideo(title,bvid,dur,type,cat,tags){
+  videoCount++;
+  const d=document.createElement('div');
+  d.className='video-item';
+  d.innerHTML='<div class=row><input placeholder=标题 value="'+(title||'')+'"><input placeholder=BV号 value="'+(bvid||'')+'"><input placeholder=时长 value="'+(dur||'')+'"><select><option '+(type==='竖屏'?'selected':'')+'>竖屏</option><option '+(type==='横屏'?'selected':'')+'>横屏</option></select><input placeholder=分类 value="'+(cat||'')+'"><input placeholder=标签 value="'+(tags||'')+'"></div><button class=danger onclick=this.parentElement.remove()>删除</button>';
+  document.getElementById('video-list').appendChild(d);
+}
+
+function addPhotoCat(){
+  const name=prompt('分类名（如：川西、产品拍摄）：');
+  if(!name) return;
+  photoCats.push(name);
+  renderPhotoCats();
+  addPhotoItem(photoCats.length-1);
+}
+
+function renderPhotoCats(){
+  const el=document.getElementById('photo-list');
+  el.innerHTML=photoCats.map((c,i)=>'<div class=photo-item><strong>'+c+'</strong> <span class=add-btn onclick=addPhotoItem('+i+')>+ 添加照片</span> <div id=photo-items-'+i+'></div></div>').join('');
+}
+
+function addPhotoItem(catIdx){
+  const name=prompt('照片文件名（如 photo1.jpg）：');
+  if(!name) return;
+  const el=document.getElementById('photo-items-'+catIdx);
+  const d=document.createElement('div');
+  d.style.cssText='font-size:.8rem;margin:3px 0';
+  d.textContent='📷 '+name+' ';
+  const del=document.createElement('span');
+  del.style.cssText='color:#da3633;cursor:pointer;margin-left:8px';
+  del.textContent='删除';
+  del.onclick=function(){d.remove()};
+  d.appendChild(del);
+  el.appendChild(d);
+}
+
+function collectData(){
+  const videos=[];
+  document.querySelectorAll('.video-item').forEach(item=>{
+    const inputs=item.querySelectorAll('input');
+    const sel=item.querySelector('select');
+    if(!inputs[0].value) return;
+    videos.push({
+      title:inputs[0].value, bvid:inputs[1].value, duration:inputs[2].value,
+      type:sel.value, category:inputs[3].value, tags:inputs[4].value
+    });
+  });
+
+  const photos={};
+  photoCats.forEach((cat,i)=>{
+    const items=document.getElementById('photo-items-'+i);
+    if(!items) return;
+    const files=[];
+    items.querySelectorAll('div').forEach(d=>files.push(d.textContent.replace('📷 ','').replace(' 删除','').trim()));
+    if(files.length) photos[cat]=files;
+  });
+
+  // Video groups: auto by category
+  const groups=[];
+  const seen={};
+  videos.forEach(v=>{
+    const key=v.category||v.type||'其他';
+    if(!seen[key]){seen[key]=[];groups.push({label:key+' · '+v.type,layout:v.type,ids:[]});}
+    const idx=videos.indexOf(v);
+    groups.find(g=>g.label.startsWith(key)).ids.push(idx);
+  });
+
+  return {
+    name:document.getElementById('name').value||'姓名',
+    title:document.getElementById('title').value,
+    phone:document.getElementById('phone').value,
+    email:document.getElementById('email').value,
+    location:document.getElementById('location').value,
+    about:document.getElementById('about').value,
+    skills:document.getElementById('skills').value,
+    social:{
+      douyin:document.getElementById('douyin').value,
+      bilibili:document.getElementById('bilibili').value,
+      xiaohongshu:document.getElementById('xiaohongshu').value
+    },
+    videos:videos,
+    videoGroups:groups,
+    photos:photos,
+    avatar:''
+  };
+}
+
+function generateJSON(){
+  const data=collectData();
+  document.getElementById('output').textContent=JSON.stringify(data,null,2);
+  document.getElementById('output').style.display='block';
+}
+
+function downloadJSON(){
+  const data=collectData();
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='config.json';
+  a.click();
+}
+
+function publishToGitHub(){
+  const repo=document.getElementById('repo').value.trim();
+  const token=document.getElementById('token').value.trim();
+  if(!repo||!token){alert('请填写仓库名和Token');return;}
+
+  const data=collectData();
+  const content=btoa(unescape(encodeURIComponent(JSON.stringify(data,null,2))));
+  const msg=document.getElementById('msg');
+
+  fetch('https://api.github.com/repos/'+repo+'/contents/config.json',{
+    method:'PUT',
+    headers:{'Authorization':'token '+token,'Content-Type':'application/json'},
+    body:JSON.stringify({
+      message:'更新作品集内容',
+      content:content,
+      sha:null // will be filled if file exists
+    })
+  })
+  .then(async r=>{
+    if(r.status===422){
+      // File exists, get SHA first
+      const info=await fetch('https://api.github.com/repos/'+repo+'/contents/config.json',{
+        headers:{'Authorization':'token '+token}
+      }).then(rr=>rr.json());
+      if(info.sha){
+        return fetch('https://api.github.com/repos/'+repo+'/contents/config.json',{
+          method:'PUT',
+          headers:{'Authorization':'token '+token,'Content-Type':'application/json'},
+          body:JSON.stringify({message:'更新作品集内容',content:content,sha:info.sha})
+        });
+      }
+    }
+    return r;
+  })
+  .then(r=>r.json())
+  .then(d=>{
+    if(d.content){
+      msg.textContent='✅ 发布成功！等待30秒后刷新网站即可看到更新。';
+      msg.style.display='block';
+    }else{
+      msg.textContent='❌ 失败：'+JSON.stringify(d);
+      msg.style.display='block';
+      msg.style.color='#da3633';
+    }
+  })
+  .catch(e=>{
+    msg.textContent='❌ 网络错误：'+e.message;
+    msg.style.display='block';
+    msg.style.color='#da3633';
+  });
+}
+
+// Init: load existing config
+fetch('config.json').then(r=>r.json()).then(c=>{
+  document.getElementById('name').value=c.name||'';
+  document.getElementById('title').value=c.title||'';
+  document.getElementById('phone').value=c.phone||'';
+  document.getElementById('email').value=c.email||'';
+  document.getElementById('location').value=c.location||'';
+  document.getElementById('about').value=c.about||'';
+  document.getElementById('skills').value=c.skills||'';
+  if(c.social){
+    document.getElementById('douyin').value=c.social.douyin||'';
+    document.getElementById('bilibili').value=c.social.bilibili||'';
+    document.getElementById('xiaohongshu').value=c.social.xiaohongshu||'';
+  }
+  if(c.videos) c.videos.forEach(v=>addVideo(v.title,v.bvid,v.duration,v.type,v.category,v.tags));
+  if(c.photos) Object.entries(c.photos).forEach(([cat,files])=>{
+    photoCats.push(cat);
+    renderPhotoCats();
+    const idx=photoCats.length-1;
+    files.forEach(f=>{
+      const el=document.getElementById('photo-items-'+idx);
+      const d=document.createElement('div');
+      d.style.cssText='font-size:.8rem;margin:3px 0';
+      d.textContent='📷 '+f+' ';
+      const del=document.createElement('span');
+      del.style.cssText='color:#da3633;cursor:pointer;margin-left:8px';
+      del.textContent='删除';
+      del.onclick=function(){d.remove()};
+      d.appendChild(del);
+      el.appendChild(d);
+    });
+  });
+}).catch(()=>{});
+
+// Init with 1 empty video
+if(!videoCount) addVideo();
+</script>
+</body>
+</html>
