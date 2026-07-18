@@ -155,9 +155,9 @@ fetch('config.json').then(r=>r.json()).then(function(C){
   }
   fl.innerHTML+='<a href="https://github.com">GitHub</a>';
 
-  // Edit hint
-  hint.href='https://github.com/JiaYang66/protfolio2/edit/main/config.json';
-  hint.textContent='✏️ 修改内容（点这里编辑 config.json）';
+  // hint removed
+  // hint removed
+  // hint removed
 
 }).catch(function(e){
   document.body.innerHTML='<div style="text-align:center;padding:5rem;color:#888"><h2>加载失败</h2><p>请确保 config.json 文件存在于仓库根目录</p><p style="margin-top:1rem;font-size:.8rem">错误: '+e.message+'</p></div>';
