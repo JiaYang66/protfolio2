@@ -89,6 +89,97 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
 <div class="lb" id="lb" onclick="this.classList.remove('on')"><span class="x">&times;</span><img id="lbImg" onclick="event.stopPropagation()"></div>
 
 <script>
+const photos=["https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800", "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800", "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800", "https://images.unsplash.com/photo-1512758017271-d7b84c2113f1?w=800", "https://images.unsplash.com/photo-1581291518633-83b4eefde613?w=800", "https://images.unsplash.com/photo-1541462608143-67571c6738dd?w=800"]!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>林悦然 · UI/UX Designer</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#fafafa;--card:#fff;--border:#eee;--text:#222;--muted:#888;--accent:#6c5ce7}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;letter-spacing:.3px}
+.hero{text-align:center;padding:6rem 1.5rem 3rem}
+.hero h1{font-size:2.8rem;font-weight:700;letter-spacing:-1px;color:#111}
+.hero .title{font-size:1rem;color:var(--muted);margin:.4rem 0 1.5rem;font-weight:400}
+.hero .skills{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap}
+.hero .skills span{font-size:.72rem;padding:4px 14px;border:1px solid #ddd;border-radius:20px;color:var(--muted);background:#fff}
+.hero .contact{margin-top:1.2rem;display:flex;gap:1.5rem;justify-content:center;font-size:.8rem;color:var(--muted)}
+.container{max-width:1100px;margin:0 auto;padding:0 2rem}
+.section{padding:3rem 0}
+.section h2{font-size:1.2rem;font-weight:600;margin-bottom:1.5rem;color:#111;letter-spacing:-.5px;display:flex;align-items:center;gap:.6rem}
+.section h2::after{content:'';flex:1;height:1px;background:#eee}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.2rem}
+.card{background:var(--card);border-radius:12px;overflow:hidden;border:1px solid var(--border);transition:.25s;box-shadow:0 1px 4px rgba(0,0,0,.03)}
+.card:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,.06)}
+.card img{width:100%;aspect-ratio:16/10;object-fit:cover;background:#f5f5f5}
+.card .info{padding:1rem 1.1rem}
+.card .info h3{font-size:.9rem;font-weight:600;margin-bottom:2px}
+.card .info p{font-size:.78rem;color:var(--muted)}
+.card .player{position:relative;aspect-ratio:16/9;background:#f0e8ff}
+.card .player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem}
+.photo-card{border-radius:10px;overflow:hidden;aspect-ratio:4/3;background:var(--card);border:1px solid var(--border);cursor:pointer;transition:.2s}
+.photo-card:hover{transform:scale(1.02)}
+.photo-card img{width:100%;height:100%;object-fit:cover}
+.about{max-width:600px;margin:0 auto;text-align:center;color:var(--muted);font-size:.9rem;line-height:2}
+.footer{text-align:center;padding:3rem 0;color:#ccc;font-size:.78rem;border-top:1px solid var(--border)}
+.lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:100;align-items:center;justify-content:center;cursor:zoom-out}
+.lb.on{display:flex}
+.lb img{max-width:90%;max-height:90%;border-radius:4px}
+.lb .x{position:absolute;top:2rem;right:2.5rem;font-size:2rem;color:#fff;cursor:pointer}
+@media(max-width:768px){.grid{grid-template-columns:1fr}.hero h1{font-size:1.8rem}}
+</style>
+</head>
+<body>
+<div class="hero">
+  <h1>林悦然</h1>
+  <p class="title">UI/UX Designer · 视觉体验创新</p>
+  <div class="skills">
+    <span>Figma</span><span>Sketch</span><span>UI设计</span><span>UX研究</span><span>设计系统</span><span>动效设计</span>
+  </div>
+  <div class="contact"><span>139-0000-0001</span><span>linyueran@design.cn</span><span>杭州</span></div>
+</div>
+
+<div class="container">
+  <div class="section">
+    <h2>UI 动效</h2>
+    <div class="grid">
+      <div class="card"><div class="player"><iframe src="https://player.bilibili.com/player.html?bvid=BV1ok4y1B79J&page=1&high_quality=1&autoplay=0" allowfullscreen></iframe></div><div class="info"><h3>App 毕业设计 — 纯手工 AE 动效</h3><p>1:18 · UI动效</p></div></div>
+      <div class="card"><div class="player"><iframe src="https://player.bilibili.com/player.html?bvid=BV1EX4y197nq&page=1&high_quality=1&autoplay=0" allowfullscreen></iframe></div><div class="info"><h3>UI 动效基础 — 让作品动起来</h3><p>7:26 · 教学演示</p></div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>品牌设计</h2>
+    <div class="grid">
+      <div class="card"><div class="player"><iframe src="https://player.bilibili.com/player.html?bvid=BV1xv411k7V9&page=1&high_quality=1&autoplay=0" allowfullscreen></iframe></div><div class="info"><h3>企业视觉形象设计 — VI 全案</h3><p>4:55 · 品牌VI</p></div></div>
+      <div class="card"><div class="player"><iframe src="https://player.bilibili.com/player.html?bvid=BV1DB3yzsETQ&page=1&high_quality=1&autoplay=0" allowfullscreen></iframe></div><div class="info"><h3>超级符号 — 品牌 Logo 动态演绎</h3><p>35s · AE动画</p></div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>设计过程</h2>
+    <div class="grid">
+      <div class="card"><div class="player"><iframe src="https://player.bilibili.com/player.html?bvid=BV1Lw8izXEKH&page=1&high_quality=1&autoplay=0" allowfullscreen></iframe></div><div class="info"><h3>Figma 绘制图标 — 工作流实录</h3><p>3:23 · Figma</p></div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>设计作品</h2>
+    <div class="photo-grid" id="photoGrid"></div>
+  </div>
+
+  <div class="section">
+    <div class="about"><p>专注移动端与Web端UI/UX设计，服务金融、电商、教育行业。追求像素级精致与用户体感流畅。好的设计自己会说话。</p></div>
+  </div>
+</div>
+
+<div class="footer">林悦然 © 2026 · UI/UX Designer</div>
+
+<div class="lb" id="lb" onclick="this.classList.remove('on')"><span class="x">&times;</span><img id="lbImg" onclick="event.stopPropagation()"></div>
+
+<script>
 const photos=["https://picsum.photos/seed/design1/800/500", "https://picsum.photos/seed/design2/800/500", "https://picsum.photos/seed/design3/800/500", "https://picsum.photos/seed/design4/800/500", "https://picsum.photos/seed/design5/800/500", "https://picsum.photos/seed/design6/800/500"]
 const grid=document.getElementById('photoGrid');
 photos.forEach(p=>{

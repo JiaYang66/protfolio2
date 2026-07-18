@@ -93,6 +93,101 @@ body{font-family:"SF Pro Display","PingFang SC","Microsoft YaHei",sans-serif;bac
 <div class="lb" id="lb" onclick="this.classList.remove('on')"><span class="x">&times;</span><img id="lbImg" onclick="event.stopPropagation()"></div>
 
 <script>
+const imgs=["https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800", "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800", "https://images.unsplash.com/photo-1536240478700-b869070f9279?w=800", "https://images.unsplash.com/photo-1535016120720-40c646be5580?w=800", "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=800", "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=800"]!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>周野 · Video Editor</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a0c;--text:#c0c0c0;--accent:#f0a500}
+body{font-family:"SF Pro Display","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.hero{text-align:center;padding:6rem 1.5rem 3rem;border-bottom:1px solid #1a1a1a}
+.hero .badge{display:inline-block;border:1px solid var(--accent);color:var(--accent);padding:4px 16px;font-size:.7rem;letter-spacing:3px;margin-bottom:1.5rem}
+.hero h1{font-size:3.5rem;font-weight:900;letter-spacing:12px;color:#fff}
+.hero .title{font-size:.9rem;color:#666;margin:.5rem 0 2rem;letter-spacing:2px}
+.hero .skills{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
+.hero .skills span{font-size:.7rem;padding:3px 10px;border:1px solid #333;color:#888;letter-spacing:1px}
+.hero .contact{display:flex;gap:1.5rem;justify-content:center;font-size:.78rem;color:#555;margin-top:1rem}
+.container{max-width:1300px;margin:0 auto;padding:0 2rem}
+.section{padding:3rem 0}
+.section h2{font-size:.85rem;color:var(--accent);letter-spacing:4px;margin-bottom:1.5rem;text-transform:uppercase;text-align:center}
+.v-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:1.2rem}
+.v-grid.port{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));justify-content:center}
+.v-card{background:#111;border-radius:6px;overflow:hidden;border:1px solid #1a1a1a;transition:.2s}
+.v-card:hover{border-color:#333}
+.v-card.landscape .player{aspect-ratio:16/9}
+.v-card.portrait .player{aspect-ratio:9/16}
+.v-card .player{position:relative;background:#0a0a0a}
+.v-card .player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.v-card .meta{padding:.8rem 1rem}
+.v-card .meta h3{font-size:.85rem;font-weight:500;color:#ddd;margin-bottom:2px}
+.v-card .meta p{font-size:.7rem;color:#555}
+.about{max-width:600px;margin:2rem auto;text-align:center;font-size:.85rem;color:#666;line-height:2}
+.footer{text-align:center;padding:3rem 0;color:#333;font-size:.7rem;border-top:1px solid #111;letter-spacing:2px}
+.project-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.8rem;margin-top:1.5rem}
+.pic{aspect-ratio:4/3;border-radius:4px;overflow:hidden;border:1px solid #1a1a1a;cursor:pointer;transition:.2s}
+.pic:hover{border-color:var(--accent)}
+.pic img{width:100%;height:100%;object-fit:cover}
+.lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.98);z-index:100;align-items:center;justify-content:center;cursor:zoom-out}
+.lb.on{display:flex}.lb img{max-width:90%;max-height:90%}
+.lb .x{position:absolute;top:2rem;right:2.5rem;font-size:2.5rem;color:#666;cursor:pointer;transition:.2s}
+.lb .x:hover{color:#fff}
+@media(max-width:768px){.v-grid,.v-grid.port{grid-template-columns:1fr}.hero h1{font-size:2rem}}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="badge">Video Editor</div>
+  <h1>周 野</h1>
+  <p class="title">剪辑师 · 短视频导演 · 用节奏讲故事</p>
+  <div class="skills"><span>PR</span><span>达芬奇</span><span>AE</span><span>剪映</span><span>节奏控制</span><span>音效设计</span></div>
+  <div class="contact"><span>186-0000-0002</span><span>zhouye@edit.cn</span><span>成都</span></div>
+</div>
+
+<div class="container">
+  <div class="section">
+    <h2>商业广告剪辑</h2>
+    <div class="v-grid">
+      <div class="v-card landscape"><div class="player"><iframe src="https://player.bilibili.com/player.html?bvid=BV1Y54y1j7ti&page=1&high_quality=1&autoplay=0" allowfullscreen></iframe></div><div class="meta"><h3>奢侈品牌广告 — 分镜与节奏参考</h3><p>1:16 · Hermès</p></div></div>
+      <div class="v-card landscape"><div class="player"><iframe src="https://player.bilibili.com/player.html?bvid=BV1Hb421B7Fv&page=1&high_quality=1&autoplay=0" allowfullscreen></iframe></div><div class="meta"><h3>比亚迪全球品牌片 —《WHO IS BYD》</h3><p>3:08 · 4K</p></div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>信息流 & 带货</h2>
+    <div class="v-grid port">
+      <div class="v-card portrait"><div class="player"><iframe src="https://player.bilibili.com/player.html?bvid=BV1TS4y1R7bN&page=1&high_quality=1&autoplay=0" allowfullscreen></iframe></div><div class="meta"><h3>饮品广告 — 竖屏情感叙事</h3><p>46s · 林里柠檬茶</p></div></div>
+    </div>
+    <div class="v-grid" style="margin-top:1rem">
+      <div class="v-card landscape"><div class="player"><iframe src="https://player.bilibili.com/player.html?bvid=BV1B9gnzAEtC&page=1&high_quality=1&autoplay=0" allowfullscreen></iframe></div><div class="meta"><h3>高级感口播剪辑 — 全网催更系列</h3><p>2:43 · 500万+观看</p></div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>调色 & 旅拍创作</h2>
+    <div class="v-grid">
+      <div class="v-card landscape"><div class="player"><iframe src="https://player.bilibili.com/player.html?bvid=BV16A411w7u1&page=1&high_quality=1&autoplay=0" allowfullscreen></iframe></div><div class="meta"><h3>夏日物语 — 文艺治愈短片·调色教程</h3><p>7:21 · 4K</p></div></div>
+      <div class="v-card landscape"><div class="player"><iframe src="https://player.bilibili.com/player.html?bvid=BV15TdwYGErA&page=1&high_quality=1&autoplay=0" allowfullscreen></iframe></div><div class="meta"><h3>电影感旅拍 — S-LOG3 调色LUT</h3><p>2:46 · 索尼调色</p></div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>作品调色板</h2>
+    <div class="project-gallery" id="gallery"></div>
+  </div>
+
+  <div class="section">
+    <h2>关于</h2>
+    <div class="about"><p>专注短视频剪辑与内容创作，服务美妆、食品、3C品牌。从素材到成片，用剪辑让内容活起来。</p></div>
+  </div>
+</div>
+
+<div class="footer">ZHOU YE · VIDEO EDITOR © 2026</div>
+<div class="lb" id="lb" onclick="this.classList.remove('on')"><span class="x">&times;</span><img id="lbImg" onclick="event.stopPropagation()"></div>
+
+<script>
 const imgs=["https://picsum.photos/seed/cinema1/800/500", "https://picsum.photos/seed/cinema2/800/500", "https://picsum.photos/seed/cinema3/800/500", "https://picsum.photos/seed/cinema4/800/500", "https://picsum.photos/seed/cinema5/800/500", "https://picsum.photos/seed/cinema6/800/500"]
 const g=document.getElementById('gallery');
 imgs.forEach(p=>{const c=document.createElement('div');c.className='pic';c.onclick=()=>{document.getElementById('lbImg').src=p;document.getElementById('lb').classList.add('on')};c.innerHTML='<img src="'+p+'" onerror="this.parentElement.remove()">';g.appendChild(c)});
