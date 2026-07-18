@@ -1,12 +1,12 @@
 {
-  "name": "你的名字",
-  "title": "你的职业定位",
-  "bio": "一句话介绍自己",
-  "phone": "17607605391",
-  "email": "你的邮箱",
-  "location": "你的城市",
-  "about": "在这里写一段自我介绍。介绍你的专业背景、擅长领域和代表作品。让访客快速了解你是谁。",
-  "skills": "技能1,技能2,技能3,技能4",
+  "name": "陈一凡",
+  "title": "商业摄影师 · 品牌视觉导演",
+  "bio": "为品牌讲好产品故事",
+  "phone": "138-0000-0000",
+  "email": "chenyifan@example.com",
+  "location": "广州 / 深圳",
+  "about": "专注商业摄影与品牌视觉内容创作，服务超过30个品牌。擅长产品摄影、短视频拍摄与后期剪辑。用镜头捕捉产品最美的瞬间，为品牌创造能卖货的好内容。",
+  "skills": "产品摄影,灯光布光,PR剪辑,达芬奇调色,无人机航拍,短视频运营,后期精修",
   "avatar": "",
   "social": {
     "douyin": "",
@@ -14,12 +14,28 @@
     "xiaohongshu": ""
   },
   "videos": [
-    {"bvid":"BV1hqKn6FECp","title":"产品功能演示","duration":"35s","type":"竖屏","category":"产品演示","tags":"拍摄,布光"}
+    {"bvid":"BV141Kn69EEY","title":"高端咖啡机 — 品牌形象片","duration":"41s","type":"横屏","category":"品牌宣传","tags":"品牌,产品,4K"},
+    {"bvid":"BV141Kn69Ep1","title":"智能磨萃一体机 — 产品宣传片","duration":"53s","type":"横屏","category":"品牌宣传","tags":"产品,4K"},
+    {"bvid":"BV18zKn6ZEVN","title":"手冲咖啡 — 沉浸式制作过程","duration":"56s","type":"横屏","category":"小红书","tags":"沉浸式,饮品,氛围感"},
+    {"bvid":"BV18zKn6ZEHj","title":"网红冰淇淋机 — 种草测评","duration":"1:32","type":"横屏","category":"小红书","tags":"种草,美食"},
+    {"bvid":"BV1SzKn6ZEWe","title":"家用磨豆机 — 好物推荐","duration":"1:02","type":"横屏","category":"小红书","tags":"好物推荐,测评"},
+    {"bvid":"BV1QqKn6FEMA","title":"咖啡饮品 — 抖音信息流广告","duration":"59s","type":"竖屏","category":"抖音","tags":"投流,信息流"},
+    {"bvid":"BV1hqKn6FE4g","title":"冷萃咖啡 — 信息流广告","duration":"53s","type":"竖屏","category":"抖音","tags":"投流"},
+    {"bvid":"BV1DqKn6FEr2","title":"618大促 — 电商投流素材","duration":"22s","type":"竖屏","category":"投流素材","tags":"促销"},
+    {"bvid":"BV13qKn6cEYZ","title":"居家咖啡 — 用户场景篇","duration":"29s","type":"竖屏","category":"投流素材","tags":"场景"},
+    {"bvid":"BV141Kn69ENg","title":"航拍 — 川西高原","duration":"29s","type":"横屏","category":"无人机","tags":"航拍,川西,雪山"},
+    {"bvid":"BV1x1Kn69EQc","title":"航拍 — 海南海岸线","duration":"15s","type":"横屏","category":"无人机","tags":"航拍,海南,大海"}
   ],
   "videoGroups": [
-    {"label":"产品演示 · 竖屏","layout":"竖屏","ids":[0]}
+    {"label":"品牌宣传片 · 横屏","layout":"横屏","ids":[0,1]},
+    {"label":"小红书 · 横屏","layout":"横屏","ids":[2,3,4]},
+    {"label":"抖音信息流 · 竖屏","layout":"竖屏","ids":[5,6]},
+    {"label":"电商投流 · 竖屏","layout":"竖屏","ids":[7,8]},
+    {"label":"无人机航拍 · 横屏","layout":"横屏","ids":[9,10]}
   ],
   "photos": {
-    "示例分类": ["photo1.jpg","photo2.jpg"]
+    "产品拍摄": ["bf1082d13931d277ad7d7a81e0bede84.jpg","未命名_1.1.1.jpg","未命名_1.3.1.jpg","未命名_1.5.1.jpg"],
+    "风光摄影": ["3bca8e21578308690d48a240393ec5ae.jpg","065fb0a46c0058ba12110ba96c4ba1d0.jpg","下雪后的洪水泥河大峡谷，太壮观了。本以为一路上不会用到防滑链，没想到今天它是拯救我的hero_#洪水泥河大峡谷_#肃州区_#小鹏_#小鹏mona_#摄影.jpg"],
+    "旅行随拍": ["我一直探索最适合搭「浆果」的画面_直到我来到海南_当海风扑面而来的一刻_所有的想象，都有了答案。_#海南_#三亚_#摄影_#海边_#海滩.jpg"]
   }
 }
