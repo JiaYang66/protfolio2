@@ -12,27 +12,28 @@ body{font-family:"Georgia","Noto Serif SC","STSong",serif;background:var(--bg);c
 .hero h1{font-size:4rem;font-weight:400;letter-spacing:12px;color:#1a1008}
 .hero .sub{font-size:1rem;color:var(--muted);letter-spacing:4px;margin:.8rem 0 2rem;font-style:italic}
 .hero .contact{font-size:.8rem;color:var(--muted);letter-spacing:1px;margin-bottom:1.5rem}
-.hero .scroll{color:var(--muted);font-size:.7rem;letter-spacing:2px;animation:bounce 2s infinite}
-@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-.section{text-align:center;padding:4rem 1.5rem;max-width:1200px;margin:0 auto}
-.section h2{font-size:1.6rem;font-weight:400;letter-spacing:4px;margin-bottom:1rem}
-.section .desc{max-width:500px;margin:0 auto 2rem;font-size:.9rem;color:var(--muted);line-height:2;font-style:italic}
-.gallery{column-count:3;column-gap:.8rem;padding:0 1rem}
-.gallery .item{break-inside:avoid;margin-bottom:.8rem;border-radius:4px;overflow:hidden;cursor:pointer;transition:.3s}
-.gallery .item:hover{opacity:.85}
-.gallery .item img{width:100%;display:block}
+.section{text-align:center;padding:4rem 1.5rem;max-width:1100px;margin:0 auto}
+.section h2{font-size:1.6rem;font-weight:400;letter-spacing:4px;margin-bottom:2rem}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+@media(max-width:768px){.grid3{grid-template-columns:repeat(2,1fr)}.hero h1{font-size:2.4rem}}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+@media(max-width:768px){.grid4{grid-template-columns:repeat(2,1fr)}}
+.p-card{aspect-ratio:3/4;border-radius:4px;overflow:hidden;cursor:pointer;transition:.3s;border:1px solid #e8ddd0;background:#e8ddd0}
+.p-card:hover{opacity:.88;transform:scale(1.01)}
+.p-card img{width:100%;height:100%;object-fit:cover}
 .v-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:1.2rem}
 .v-card{background:#fff;border-radius:4px;overflow:hidden;box-shadow:0 1px 8px rgba(0,0,0,.04);border:1px solid #e8ddd0}
 .v-card .player{aspect-ratio:16/9;position:relative;background:#e8ddd0}
 .v-card .player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .v-card .info{padding:.8rem 1rem;text-align:left}
 .v-card .info h3{font-size:.9rem;font-weight:400;margin-bottom:2px}
-.v-card .info p{font-size:.75rem;color:var(--muted);font-style:normal}
+.v-card .info p{font-size:.75rem;color:var(--muted)}
+.desc{max-width:500px;margin:0 auto 2rem;font-size:.9rem;color:var(--muted);line-height:2;font-style:italic}
 .footer{text-align:center;padding:3rem;color:var(--muted);font-size:.75rem;letter-spacing:2px}
 .lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:100;align-items:center;justify-content:center;cursor:zoom-out}
 .lb.on{display:flex}.lb img{max-width:90%;max-height:90%;border-radius:2px}
 .lb .x{position:absolute;top:2rem;right:2.5rem;font-size:2.5rem;color:#999;cursor:pointer}
-@media(max-width:768px){.gallery{column-count:2}.hero h1{font-size:2.4rem}.v-grid{grid-template-columns:1fr}}
+@media(max-width:768px){.v-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -41,31 +42,30 @@ body{font-family:"Georgia","Noto Serif SC","STSong",serif;background:var(--bg);c
   <h1>苏 晴</h1>
   <p class="sub">Portrait Photographer · 捕捉真实的情绪与光</p>
   <div class="contact">177-0000-0004 · suqing@photo.cn · 上海</div>
-  <div class="scroll">↓ 作品浏览</div>
 </div>
 
 <div class="section">
   <h2>婚礼纪实</h2>
-  <div class="gallery" id="gallery1"></div>
+  <div class="grid3" id="g1"></div>
 </div>
 
 <div class="section">
   <h2>人像写真</h2>
-  <div class="gallery" id="gallery2"></div>
+  <div class="grid4" id="g2"></div>
 </div>
 
 <div class="section">
   <h2>旅行随拍</h2>
-  <div class="gallery" id="gallery3"></div>
+  <div class="grid3" id="g3"></div>
 </div>
 
 <div class="section">
   <h2>影像短片</h2>
   <div class="v-grid">
-    <div class="v-card"><div class="player"><iframe src="https://player.bilibili.com/player.html?bvid=BV12287e8E9M&page=1&high_quality=1&autoplay=0" allowfullscreen></iframe></div><div class="info"><h3>新疆旅行结婚MV — 愿我们永远自由</h3><p>3:37 · 婚礼旅拍 · 4K</p></div></div>
-    <div class="v-card"><div class="player"><iframe src="https://player.bilibili.com/player.html?bvid=BV1mnTxzJEwf&page=1&high_quality=1&autoplay=0" allowfullscreen></iframe></div><div class="info"><h3>50mm定焦 — 电影感人像写真</h3><p>6:32 · 毕业季 · 索尼A7R5</p></div></div>
-    <div class="v-card"><div class="player"><iframe src="https://player.bilibili.com/player.html?bvid=BV1d7xneGEDk&page=1&high_quality=1&autoplay=0" allowfullscreen></iframe></div><div class="info"><h3>万能摆姿引导 — 动漫风实拍教学</h3><p>6:42 · 话术+思维导图</p></div></div>
-    <div class="v-card"><div class="player"><iframe src="https://player.bilibili.com/player.html?bvid=BV1bDyNYJEb2&page=1&high_quality=1&autoplay=0" allowfullscreen></iframe></div><div class="info"><h3>电影布光幕后 —《DYSTOPIA》花絮</h3><p>5:11 · 商业灯光</p></div></div>
+    <div class="v-card"><div class="player"><iframe src="https://player.bilibili.com/player.html?bvid=BV12287e8E9M&page=1&high_quality=1&autoplay=0" allowfullscreen></iframe></div><div class="info"><h3>新疆旅行结婚MV — 愿我们永远自由</h3><p>3:37 · 4K</p></div></div>
+    <div class="v-card"><div class="player"><iframe src="https://player.bilibili.com/player.html?bvid=BV1mnTxzJEwf&page=1&high_quality=1&autoplay=0" allowfullscreen></iframe></div><div class="info"><h3>50mm定焦 — 电影感人像写真</h3><p>6:32 · 索尼A7R5</p></div></div>
+    <div class="v-card"><div class="player"><iframe src="https://player.bilibili.com/player.html?bvid=BV1d7xneGEDk&page=1&high_quality=1&autoplay=0" allowfullscreen></iframe></div><div class="info"><h3>万能摆姿引导 — 实拍教学</h3><p>6:42</p></div></div>
+    <div class="v-card"><div class="player"><iframe src="https://player.bilibili.com/player.html?bvid=BV1bDyNYJEb2&page=1&high_quality=1&autoplay=0" allowfullscreen></iframe></div><div class="info"><h3>电影布光幕后 — DYSTOPIA 花絮</h3><p>5:11</p></div></div>
   </div>
 </div>
 
@@ -74,31 +74,29 @@ body{font-family:"Georgia","Noto Serif SC","STSong",serif;background:var(--bg);c
   <p class="desc">专注人像摄影六年。擅长自然光人像、婚礼跟拍与商业肖像。每张照片背后都是一个独特的故事，我的工作是让它被看见。</p>
 </div>
 
-<div class="footer">SU QING · PORTRAIT PHOTOGRAPHER © 2026</div>
+<div class="footer">SU QING © 2026</div>
 
-<div class="lb" id="lb" onclick="this.classList.remove('on')"><span class="x">&times;</span><img id="lbImg" onclick="event.stopPropagation()"></div>
+<div class="lb" id="lb" onclick="this.classList.remove('on')"><span class="x">&times;</span><img id="lbImg"></div>
 
 <script>
-const base = '../photos/';
-const cat1 = ['产品拍摄/bf1082d13931d277ad7d7a81e0bede84.jpg','产品拍摄/未命名_1.1.1.jpg','产品拍摄/未命名_1.2.1.jpg'];
-const cat2 = ['产品拍摄/未命名_1.3.1.jpg','产品拍摄/未命名_1.4.1.jpg','产品拍摄/未命名_1.5.1.jpg','产品拍摄/未命名_1.5.2.jpg'];
-const cat3 = ['产品拍摄/未命名_1.6.1.jpg','产品拍摄/未命名_1.7.1.jpg','产品拍摄/未命名_1.8.1.jpg'];
+const base = '../photos/产品拍摄/';
+const items = [
+  ['g1','未命名_1.1.1.jpg,未命名_1.2.1.jpg,未命名_1.3.1.jpg'],
+  ['g2','未命名_1.4.1.jpg,未命名_1.5.1.jpg,未命名_1.5.2.jpg,未命名_1.6.1.jpg'],
+  ['g3','未命名_1.7.1.jpg,未命名_1.8.1.jpg,未命名_1.10.1.jpg'],
+];
 
-function fill(id, files) {
+items.forEach(([id, files]) => {
   const el = document.getElementById(id);
-  files.forEach(f => {
+  files.split(',').forEach(f => {
     const src = base + f;
     const d = document.createElement('div');
-    d.className = 'item';
+    d.className = 'p-card';
     d.onclick = () => { document.getElementById('lbImg').src = src; document.getElementById('lb').classList.add('on'); };
-    d.innerHTML = '<img src="' + src + '" onerror="this.parentElement.remove()">';
+    d.innerHTML = '<img src="' + src + '" loading=lazy onerror="this.parentElement.remove()">';
     el.appendChild(d);
   });
-}
-
-fill('gallery1', cat1);
-fill('gallery2', cat2);
-fill('gallery3', cat3);
+});
 </script>
 </body>
 </html>
