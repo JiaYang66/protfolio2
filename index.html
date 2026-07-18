@@ -84,7 +84,7 @@ section{padding:4rem 0}
 </div>
 
 <div class="lb" id="lb" onclick="this.classList.remove('on')"><span class="x">&times;</span><img id="lbImg" onclick="event.stopPropagation()"></div>
-<a class="edit-hint" href="https://github.com/JiaYang66/portfolio2/blob/main/config.json" target="_blank">✏️ 编辑内容</a>
+<a class="edit-hint" href="https://github.com/JiaYang66/protfolio2/blob/main/config.json" target="_blank">✏️ 编辑内容</a>
 
 <script>
 fetch('config.json').then(r=>r.json()).then(function(C){
@@ -160,7 +160,7 @@ fetch('config.json').then(r=>r.json()).then(function(C){
 
   // Edit hint
   var hint=document.querySelector('.edit-hint');
-  hint.href='https://github.com/JiaYang66/portfolio2/edit/main/config.json';
+  hint.href='https://github.com/JiaYang66/protfolio2/edit/main/config.json';
   hint.textContent='✏️ 修改内容（点这里编辑 config.json）';
 
 }).catch(function(e){
