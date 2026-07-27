@@ -58,7 +58,8 @@ nav a.active small{color:var(--gold)}
 .footer .social a{color:var(--muted);text-decoration:none}
 
 @media(min-width:768px){.grid3{grid-template-columns:repeat(4,1fr)}.header h1{font-size:2.6rem}nav .inner{gap:1rem}}
-</style>
+
+/* */</style>
 </head>
 <body>
 
@@ -118,10 +119,15 @@ function switchTab(i){
 const pageSize=12;
 const grids={};
 
-function renderItem(el, dir, i, src){
+const CDN='https://cdn.jsdelivr.net/gh/JiaYang66/protfolio2@main/demos/';
+
+function renderItem(el, dir, i){
+  const fname=dir+'_'+String(i).padStart(2,'0')+'.jpg';
+  const thumb=CDN+dir+'_thumb/'+fname;
+  const full=CDN+dir+'/'+fname;
   const d=document.createElement('div');d.className='item';
-  d.innerHTML='<img src="'+src+'" loading=lazy onerror="this.parentElement.remove()">';
-  d.onclick=()=>{document.getElementById('lbImg').src=src;document.getElementById('lb').classList.add('on')};
+  d.innerHTML='<img src="'+thumb+'" loading=lazy onerror="this.parentElement.remove()">';
+  d.onclick=()=>{document.getElementById('lbImg').src=full;document.getElementById('lb').classList.add('on')};
   el.appendChild(d);
 }
 
@@ -138,7 +144,7 @@ function loadMore(id){
   const end=Math.min(g.shown+pageSize,g.total);
   for(let i=g.shown+1;i<=end;i++){
     const src=g.dir+'/'+g.dir+'_'+String(i).padStart(2,'0')+'.jpg';
-    renderItem(g.el,g.dir,i,src);
+    renderItem(g.el,g.dir,i);
   }
   g.shown=end;
 }
