@@ -115,17 +115,52 @@ function switchTab(i){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
+const pageSize=12;
+const grids={};
+
+function renderItem(el, dir, i, src){
+  const d=document.createElement('div');d.className='item';
+  d.innerHTML='<img src="'+src+'" loading=lazy onerror="this.parentElement.remove()">';
+  d.onclick=()=>{document.getElementById('lbImg').src=src;document.getElementById('lb').classList.add('on')};
+  el.appendChild(d);
+}
+
 function renderGrid(elId, dir, count){
   const el=document.getElementById(elId);
-  el.innerHTML='';
-  for(let i=1;i<=count;i++){
-    const src=`${dir}/${dir}_${String(i).padStart(2,'0')}.jpg`;
-    const d=document.createElement('div');d.className='item';
-    d.innerHTML='<img src="'+src+'" loading=lazy>';
-    d.onclick=()=>{document.getElementById('lbImg').src=src;document.getElementById('lb').classList.add('on')};
-    el.appendChild(d);
-  }
+  grids[elId]={dir:dir,total:count,shown:0,el:el};
+  loadMore(elId);
 }
+
+function loadMore(id){
+  const g=grids[id];
+  if(!g||g.shown>=g.total) return;
+  const to=g.total;
+  const end=Math.min(g.shown+pageSize,g.total);
+  for(let i=g.shown+1;i<=end;i++){
+    const src=g.dir+'/'+g.dir+'_'+String(i).padStart(2,'0')+'.jpg';
+    renderItem(g.el,g.dir,i,src);
+  }
+  g.shown=end;
+}
+
+// Infinite scroll
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const id=e.target.id;
+      loadMore(id);
+      if(grids[id]&&grids[id].shown>=grids[id].total) e.target.remove();
+    }
+  });
+},{rootMargin:'200px'});
+
+document.querySelectorAll('.grid3').forEach(g=>{
+  const sentinel=document.createElement('div');
+  sentinel.id=g.id+'-sentinel';
+  sentinel.style.cssText='height:1px';
+  g.parentElement.appendChild(sentinel);
+  io.observe(sentinel);
+});
 
 renderGrid('g-wedding','wedding',31);
 renderGrid('g-portrait','portrait',30);
