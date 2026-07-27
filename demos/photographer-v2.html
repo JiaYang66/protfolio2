@@ -116,9 +116,6 @@ function switchTab(i){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-const pageSize=12;
-const grids={};
-
 const CDN='https://cdn.jsdelivr.net/gh/JiaYang66/protfolio2@main/demos/';
 
 function renderItem(el, dir, i){
@@ -133,40 +130,8 @@ function renderItem(el, dir, i){
 
 function renderGrid(elId, dir, count){
   const el=document.getElementById(elId);
-  grids[elId]={dir:dir,total:count,shown:0,el:el};
-  loadMore(elId);
+  for(let i=1;i<=count;i++) renderItem(el, dir, i);
 }
-
-function loadMore(id){
-  const g=grids[id];
-  if(!g||g.shown>=g.total) return;
-  const to=g.total;
-  const end=Math.min(g.shown+pageSize,g.total);
-  for(let i=g.shown+1;i<=end;i++){
-    const src=g.dir+'/'+g.dir+'_'+String(i).padStart(2,'0')+'.jpg';
-    renderItem(g.el,g.dir,i);
-  }
-  g.shown=end;
-}
-
-// Infinite scroll
-const io=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      const id=e.target.id;
-      loadMore(id);
-      if(grids[id]&&grids[id].shown>=grids[id].total) e.target.remove();
-    }
-  });
-},{rootMargin:'200px'});
-
-document.querySelectorAll('.grid3').forEach(g=>{
-  const sentinel=document.createElement('div');
-  sentinel.id=g.id+'-sentinel';
-  sentinel.style.cssText='height:1px';
-  g.parentElement.appendChild(sentinel);
-  io.observe(sentinel);
-});
 
 renderGrid('g-wedding','wedding',31);
 renderGrid('g-portrait','portrait',30);
