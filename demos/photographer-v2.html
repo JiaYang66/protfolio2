@@ -2,220 +2,206 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>摄影师 · 视觉作品集</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>摄影师 · 作品集</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#0c0c0e;--card:#141416;--border:#1f1f22;--text:#c4c4c4;--muted:#6a6a6a;--accent:#d4946a;--gold:#b8956a}
-body{font-family:"Inter","SF Pro Display","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
-html{scroll-behavior:smooth}
+:root{--bg:#faf9f7;--card:#fff;--text:#1a1a1a;--muted:#888;--accent:#c47a5a}
+body{font-family:"Georgia","Noto Serif SC","PingFang SC",serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
-/* Cursor */
-.cursor{position:fixed;width:20px;height:20px;border:1px solid var(--accent);border-radius:50%;pointer-events:none;z-index:999;transition:transform .15s,opacity .15s;opacity:0}
-.cursor.active{transform:scale(2.5);background:var(--accent);opacity:.2}
-@media(max-width:768px){.cursor{display:none}}
+/* Header */
+.header{padding:2rem 1.2rem;text-align:center;position:sticky;top:0;z-index:20;background:rgba(250,249,247,.92);backdrop-filter:blur(12px)}
+.header .logo{font-size:.65rem;letter-spacing:.25em;color:var(--accent);margin-bottom:.5rem}
+.header h1{font-size:1.6rem;font-weight:400;letter-spacing:.12em}
+.header .sub{font-size:.75rem;color:var(--muted);letter-spacing:.08em;margin-top:.3rem}
 
-/* Hero */
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;padding:2rem}
-.hero .bg-text{position:absolute;font-size:18vw;font-weight:900;color:#ffffff02;letter-spacing:-.02em;pointer-events:none;user-select:none;top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap}
-.hero .content{text-align:center;z-index:1}
-.hero h1{font-size:clamp(2.2rem,5vw,4.5rem);font-weight:200;letter-spacing:.15em;color:#e8e4e0}
-.hero .sub{font-size:.85rem;color:var(--accent);letter-spacing:.4em;margin:1.5rem 0;font-weight:400}
-.hero .scroll{position:absolute;bottom:3rem;left:50%;transform:translateX(-50%);width:1px;height:60px;background:linear-gradient(transparent,var(--accent));animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
+/* Category tabs */
+.tabs{display:flex;justify-content:center;gap:2rem;padding:1rem 1.2rem 1.5rem;border-bottom:1px solid #eee}
+.tabs span{font-size:.72rem;letter-spacing:.1em;color:var(--muted);cursor:pointer;padding-bottom:6px;border-bottom:1px solid transparent;transition:.3s}
+.tabs span.active{color:var(--text);border-bottom-color:var(--accent)}
 
-/* Navigation */
-nav{position:fixed;top:0;left:0;right:0;z-index:50;padding:1.5rem 2rem;display:flex;justify-content:center;gap:2.5rem;background:linear-gradient(var(--bg),transparent);transition:.3s}
-nav.scrolled{background:rgba(12,12,14,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
-nav a{color:var(--muted);text-decoration:none;font-size:.7rem;letter-spacing:.2em;transition:.3s;position:relative}
-nav a::after{content:'';position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);width:0;height:1px;background:var(--accent);transition:.3s}
-nav a:hover,nav a.active{color:var(--accent)}
-nav a:hover::after,nav a.active::after{width:100%}
+/* Photo Sets */
+.set{padding:1.2rem 1rem;display:none}
+.set.active{display:block}
+.set h2{font-size:1.1rem;font-weight:400;letter-spacing:.08em;margin-bottom:.6rem;text-align:center;color:var(--text)}
+.set .cnt{font-size:.7rem;color:var(--muted);text-align:center;letter-spacing:.05em;margin-bottom:1.2rem}
 
-/* Sections */
-.section{padding:6rem 2rem;max-width:1400px;margin:0 auto}
-.section h2{font-size:1.6rem;font-weight:200;letter-spacing:.15em;text-align:center;margin-bottom:.5rem;color:#d4d0cc}
-.section .hint{text-align:center;font-size:.65rem;color:var(--accent);letter-spacing:.25em;margin-bottom:3.5rem}
+/* Photo grid - 2 columns on mobile */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.grid2 .item{aspect-ratio:3/4;overflow:hidden;cursor:pointer;position:relative;border-radius:2px}
+.grid2 .item img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.grid2 .item:active img{transform:scale(1.03)}
+.grid2 .item .cap{position:absolute;bottom:0;left:0;right:0;padding:1rem;background:linear-gradient(transparent,rgba(0,0,0,.5));color:#fff;font-size:.65rem;letter-spacing:.05em;opacity:0;transition:.3s}
+.grid2 .item:active .cap{opacity:1}
 
-/* Gallery */
-.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
-@media(max-width:768px){.gallery{grid-template-columns:repeat(2,1fr)}}
-.g-item{aspect-ratio:3/4;overflow:hidden;cursor:pointer;position:relative;background:#1a1a1a}
-.g-item img{width:100%;height:100%;object-fit:cover;transition:.6s ease;filter:brightness(.85)}
-.g-item:hover img{transform:scale(1.05);filter:brightness(1)}
-.g-item .overlay{position:absolute;inset:0;background:rgba(0,0,0,.4);opacity:0;transition:.3s;display:flex;align-items:flex-end;padding:2rem}
-.g-item:hover .overlay{opacity:1}
-.g-item .overlay span{color:#fff;font-size:.8rem;letter-spacing:.1em}
+/* Landscape row */
+.row-scroll{display:flex;gap:8px;overflow-x:auto;padding:0 1rem 1rem;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.row-scroll::-webkit-scrollbar{display:none}
+.row-scroll .item{flex:0 0 75vw;aspect-ratio:16/10;scroll-snap-align:center;overflow:hidden;border-radius:4px;cursor:pointer}
+.row-scroll .item img{width:100%;height:100%;object-fit:cover}
 
-/* Video Grid */
-.v-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:1rem}
-@media(max-width:768px){.v-grid{grid-template-columns:1fr}}
-.v-card{background:var(--card);border-radius:6px;overflow:hidden;border:1px solid var(--border);transition:.3s}
-.v-card:hover{border-color:#333;transform:translateY(-2px)}
-.v-card .player{aspect-ratio:16/9;position:relative;background:#0a0a0a}
+/* Video section */
+.video-set{padding:1.2rem 1rem}
+.video-set h2{font-size:1.1rem;font-weight:400;text-align:center;letter-spacing:.08em;margin-bottom:1rem}
+.v-card{background:var(--card);border-radius:8px;overflow:hidden;margin-bottom:10px;box-shadow:0 1px 6px rgba(0,0,0,.04)}
+.v-card .player{aspect-ratio:16/9;position:relative;background:#f0ebe4}
 .v-card .player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.v-card .info{padding:1rem 1.1rem}
-.v-card .info h3{font-size:.9rem;font-weight:400;color:#d4d0cc;margin-bottom:3px}
-.v-card .info p{font-size:.72rem;color:var(--muted)}
-.v-card .tags{margin-top:6px;display:flex;gap:5px;flex-wrap:wrap}
-.v-card .tags span{font-size:.62rem;padding:2px 8px;border-radius:2px;background:#1a1a1a;color:var(--accent);border:1px solid #252525}
+.v-card .info{padding:.8rem 1rem}
+.v-card .info h3{font-size:.85rem;font-weight:400;margin-bottom:2px}
+.v-card .info p{font-size:.7rem;color:var(--muted)}
 
 /* About */
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;max-width:900px;margin:0 auto}
-@media(max-width:768px){.about-grid{grid-template-columns:1fr}}
-.about-grid .text p{font-size:.95rem;color:var(--muted);line-height:2;font-weight:300;margin-bottom:1.2rem}
-.about-grid .skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.about-grid .skill-box{border:1px solid var(--border);border-radius:4px;padding:.8rem 1rem;text-align:center;transition:.3s;background:var(--card)}
-.about-grid .skill-box:hover{border-color:var(--accent)}
-.about-grid .skill-box .name{font-size:.78rem;color:#d4d0cc;letter-spacing:.05em}
-.about-grid .skill-box .level{font-size:.62rem;color:var(--accent);margin-top:3px;letter-spacing:.1em}
+.about{padding:3rem 1.5rem;text-align:center;max-width:400px;margin:0 auto}
+.about h2{font-size:1.2rem;font-weight:400;letter-spacing:.08em;margin-bottom:1rem}
+.about p{font-size:.85rem;color:var(--muted);line-height:2;letter-spacing:.03em}
+.about .skills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:1.5rem}
+.about .skills span{font-size:.7rem;padding:6px 16px;border:1px solid #ddd;border-radius:20px;color:var(--muted)}
 
 /* Lightbox */
-.lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:100;align-items:center;justify-content:center;cursor:zoom-out;backdrop-filter:blur(10px)}
-.lb.on{display:flex}.lb img,.lb video{max-width:90%;max-height:90%;border-radius:2px;box-shadow:0 0 80px rgba(0,0,0,.6)}
-.lb .close{position:absolute;top:2rem;right:2.5rem;font-size:2rem;color:#666;cursor:pointer;transition:.3s;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:50%}
-.lb .close:hover{color:#fff;background:rgba(255,255,255,.05)}
+.lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.97);z-index:100;align-items:center;justify-content:center}
+.lb.on{display:flex}.lb img{max-width:96%;max-height:90%;border-radius:2px}
+.lb .close{position:absolute;top:1rem;right:1.5rem;font-size:2rem;color:#999;width:36px;height:36px;display:flex;align-items:center;justify-content:center}
+.lb .close:active{color:#fff}
 
 /* Footer */
-.footer{text-align:center;padding:5rem 2rem;color:#333;font-size:.7rem;letter-spacing:.15em;border-top:1px solid var(--border)}
-.footer .social{display:flex;gap:2rem;justify-content:center;margin:1.5rem 0}
-.footer .social a{color:var(--muted);text-decoration:none;transition:.3s}
-.footer .social a:hover{color:var(--accent)}
+.footer{text-align:center;padding:3rem 1.5rem;color:#ccc;font-size:.7rem;letter-spacing:.08em;border-top:1px solid #eee}
 
-/* Animations */
-.fade-up{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
-.fade-up.visible{opacity:1;transform:translateY(0)}
-.delay-1{transition-delay:.1s}.delay-2{transition-delay:.2s}.delay-3{transition-delay:.3s}
+@media(min-width:768px){
+  .grid2{grid-template-columns:repeat(3,1fr);gap:10px}
+  .row-scroll .item{flex:0 0 45vw}
+  .header h1{font-size:2.2rem}
+}
 </style>
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
+<div class="header">
+  <div class="logo">PORTFOLIO</div>
+  <h1>陈一凡</h1>
+  <p class="sub">摄影师 · 用镜头记录真实</p>
+</div>
 
-<!-- Hero -->
-<div class="hero">
-  <div class="bg-text">PHOTOGRAPHY</div>
-  <div class="content">
-    <h1>陈 一 凡</h1>
-    <p class="sub">PORTRAIT & COMMERCIAL PHOTOGRAPHER</p>
-    <p style="color:var(--muted);font-size:.75rem;letter-spacing:.15em">产品摄影 · 人像 · 航拍 · 短视频</p>
+<div class="tabs">
+  <span class="active" onclick="switchTab(0)">婚礼</span>
+  <span onclick="switchTab(1)">人像</span>
+  <span onclick="switchTab(2)">旅行</span>
+  <span onclick="switchTab(3)">视频</span>
+  <span onclick="switchTab(4)">关于</span>
+</div>
+
+<div id="sets">
+  <!-- Wedding -->
+  <div class="set active">
+    <h2>婚礼纪实</h2>
+    <p class="cnt">· WEDDING ·</p>
+    <div class="grid2" id="g-wedding"></div>
   </div>
-  <div class="scroll"></div>
-</div>
 
-<!-- Nav -->
-<nav id="nav">
-  <a href="#work" class="active">作品</a>
-  <a href="#video">视频</a>
-  <a href="#about">关于</a>
-</nav>
+  <!-- Portrait -->
+  <div class="set">
+    <h2>人像写真</h2>
+    <p class="cnt">· PORTRAIT ·</p>
+    <div class="grid2" id="g-portrait"></div>
+  </div>
 
-<!-- Photo Gallery -->
-<div class="section" id="work">
-  <h2>摄影作品</h2>
-  <p class="hint">PHOTOGRAPHY</p>
-  <div class="gallery" id="gallery"></div>
-</div>
+  <!-- Travel -->
+  <div class="set">
+    <h2>旅行风光</h2>
+    <p class="cnt">· TRAVEL ·</p>
+    <div class="row-scroll" id="g-travel"></div>
+    <div class="grid2" style="margin-top:12px" id="g-travel-more"></div>
+  </div>
 
-<!-- Videos -->
-<div class="section" id="video">
-  <h2>视频作品</h2>
-  <p class="hint">VIDEOGRAPHY</p>
-  <div class="v-grid" id="vgrid"></div>
-</div>
+  <!-- Videos -->
+  <div class="set" id="s-video">
+    <div class="video-set">
+      <h2>影像短片</h2>
+      <div class="v-card"><div class="player"><iframe src="https://player.bilibili.com/player.html?bvid=BV12287e8E9M&page=1&high_quality=1&autoplay=0" allowfullscreen></iframe></div><div class="info"><h3>新疆旅行结婚MV — 愿我们永远自由</h3><p>3:37 · 4K</p></div></div>
+      <div class="v-card"><div class="player"><iframe src="https://player.bilibili.com/player.html?bvid=BV1mnTxzJEwf&page=1&high_quality=1&autoplay=0" allowfullscreen></iframe></div><div class="info"><h3>50mm定焦 — 电影感人像写真</h3><p>6:32 · 索尼A7R5</p></div></div>
+      <div class="v-card"><div class="player"><iframe src="https://player.bilibili.com/player.html?bvid=BV1d7xneGEDk&page=1&high_quality=1&autoplay=0" allowfullscreen></iframe></div><div class="info"><h3>摆姿引导 — 实拍教学</h3><p>6:42</p></div></div>
+      <div class="v-card"><div class="player"><iframe src="https://player.bilibili.com/player.html?bvid=BV1bDyNYJEb2&page=1&high_quality=1&autoplay=0" allowfullscreen></iframe></div><div class="info"><h3>电影布光幕后 — DYSTOPIA花絮</h3><p>5:11</p></div></div>
+    </div>
+  </div>
 
-<!-- About -->
-<div class="section" id="about">
-  <h2>关于</h2>
-  <p class="hint">ABOUT ME</p>
-  <div class="about-grid">
-    <div class="text"><p>相机是我理解世界的方式。从业六年，拍过产品、拍过人像、拍过婚礼，也拍过无人区的星空。每一次快门都是一次对话——与光、与情绪、与真实。</p><p style="color:#888">商业摄影让我养活自己，风光摄影让我保持热爱。两者我都不会放弃。</p></div>
-    <div class="skills-grid">
-      <div class="skill-box"><div class="name">产品摄影</div><div class="level">★★★★★</div></div>
-      <div class="skill-box"><div class="name">人像写真</div><div class="level">★★★★★</div></div>
-      <div class="skill-box"><div class="name">无人机航拍</div><div class="level">★★★★☆</div></div>
-      <div class="skill-box"><div class="name">短视频</div><div class="level">★★★★☆</div></div>
-      <div class="skill-box"><div class="name">后期调色</div><div class="level">★★★★★</div></div>
-      <div class="skill-box"><div class="name">创意概念</div><div class="level">★★★★☆</div></div>
+  <!-- About -->
+  <div class="set">
+    <div class="about">
+      <h2>关于</h2>
+      <p>相机是我理解世界的方式。从业六年，拍过产品、人像、婚礼和无人区的星空。每一次快门都是与光的对话。</p>
+      <div class="skills">
+        <span>产品摄影</span><span>人像写真</span><span>无人机航拍</span><span>短视频</span><span>后期调色</span>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="footer">
-  <p>陈一凡 · 摄影师</p>
-  <div class="social"><a href="#">小红书</a><a href="#">B站</a><a href="#">抖音</a></div>
-  <p style="color:#444">© 2026 · 用镜头记录真实</p>
-</div>
-
-<!-- Lightbox -->
 <div class="lb" id="lb" onclick="this.classList.remove('on')">
   <div class="close">&times;</div>
-  <div id="lbContent"></div>
+  <img id="lbImg">
 </div>
 
 <script>
-// Cursor
-const cs=document.getElementById('cursor');
-document.addEventListener('mousemove',e=>{cs.style.left=e.clientX-10+'px';cs.style.top=e.clientY-10+'px';cs.style.opacity=1});
-document.addEventListener('mouseleave',()=>cs.style.opacity=0);
-document.querySelectorAll('.g-item,.v-card,.skill-box').forEach(el=>{
-  el.addEventListener('mouseenter',()=>cs.classList.add('active'));
-  el.addEventListener('mouseleave',()=>cs.classList.remove('active'));
-});
+function switchTab(i){
+  document.querySelectorAll('.tabs span').forEach((t,j)=>t.classList.toggle('active',j===i));
+  document.querySelectorAll('.set').forEach((s,j)=>s.classList.toggle('active',j===i));
+}
 
-// Nav scroll
-window.addEventListener('scroll',()=>{
-  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>100);
-});
-document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',function(){
-  document.querySelectorAll('nav a').forEach(x=>x.classList.remove('active'));
-  this.classList.add('active');
-}));
-
-// Fade-up
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
-},{threshold:.1});
-document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
-
-// Photos - Unsplash curated
 const U='https://images.unsplash.com/';
-const photoData=[
-  ['photo-1511285560929-80b456fea0bc',800,1200,'婚礼 · 第一支舞'],
-  ['photo-1583939003579-730e3918a45a',800,533,'戒指 · 交换'],
-  ['photo-1507504031003-b417219a0fde',600,900,'白纱 · 晨光'],
-  ['photo-1519741497674-611481863552',600,900,'人像 · 柔焦'],
-  ['photo-1485207801406-48c5ac7286b2',600,900,'情绪 · 剪影'],
-  ['photo-1544005313-93ddf0286df2',600,900,'侧光 · 午后'],
-  ['photo-1465495976277-4387d4b0b4c2',800,533,'原野 · 黄昏'],
-  ['photo-1492691527719-9d1e07e534b4',800,533,'光影 · 城市'],
-  ['photo-1508138221679-760a23a2285b',800,533,'海岸 · 破晓'],
+function src(id,w,h){return U+id+'?w='+w+'&h='+h+'&fit=crop&q=80&auto=format'}
+
+// Wedding photos
+const wedding=[
+  ['photo-1511285560929-80b456fea0bc',600,900,'交换誓言'],
+  ['photo-1583939003579-730e3918a45a',600,900,'戒指'],
+  ['photo-1507504031003-b417219a0fde',600,900,'白纱'],
+  ['photo-1519741497674-611481863552',600,900,'第一支舞'],
 ];
 
-function photoUrl(id,w,h){return U+id+'?w='+w+'&h='+h+'&fit=crop&q=85&auto=format'}
-const gal=document.getElementById('gallery');
-photoData.forEach(([id,w,h,cap])=>{
-  const d=document.createElement('div');d.className='g-item';
-  d.innerHTML='<img src="'+photoUrl(id,w,h)+'" loading=lazy alt="'+cap+'"><div class=overlay><span>'+cap+'</span></div>';
-  d.onclick=()=>{
-    const lb=document.getElementById('lb'),lc=document.getElementById('lbContent');
-    lc.innerHTML='<img src="'+photoUrl(id,1600,1600)+'" style=max-height:90vh>';
-    lb.classList.add('on');
-  };
-  gal.appendChild(d);
-});
-
-// Videos
-const videos=[
-  {bv:'BV12287e8E9M',title:'新疆旅行结婚MV',dur:'3:37',tags:'婚礼,旅拍,4K'},
-  {bv:'BV1mnTxzJEwf',title:'50mm定焦电影感人像',dur:'6:32',tags:'写真,索尼A7R5'},
-  {bv:'BV1d7xneGEDk',title:'摆姿引导实拍教学',dur:'6:42',tags:'教程,人像'},
-  {bv:'BV1bDyNYJEb2',title:'电影布光幕后花絮',dur:'5:11',tags:'灯光,商业'},
+// Portrait photos
+const portrait=[
+  ['photo-1544005313-93ddf0286df2',600,900,'侧光'],
+  ['photo-1485207801406-48c5ac7286b2',600,900,'剪影'],
+  ['photo-1504214208698-ea1916a2195a',600,900,'柔光'],
+  ['photo-1492288991661-058aa541ff43',600,900,'午后'],
 ];
-const vg=document.getElementById('vgrid');
-videos.forEach(v=>{
-  vg.innerHTML+='<div class=v-card><div class=player><iframe src="https://player.bilibili.com/player.html?bvid='+v.bv+'&page=1&high_quality=1&autoplay=0" allowfullscreen></iframe></div><div class=info><h3>'+v.title+'</h3><p>'+v.dur+'</p><div class=tags>'+v.tags.split(',').map(t=>'<span>'+t+'</span>').join('')+'</div></div></div>';
-});
+
+// Travel photos
+const travelFull=[
+  ['photo-1465495976277-4387d4b0b4c2',800,500,'原野'],
+  ['photo-1492691527719-9d1e07e534b4',800,500,'城市光影'],
+  ['photo-1508138221679-760a23a2285b',800,500,'海岸'],
+];
+
+const travelMore=[
+  ['photo-1501785888041-af3ef285b470',600,600,'山脊'],
+  ['photo-1506905925346-21bda4d32df4',600,600,'星野'],
+  ['photo-1472214103451-9374bd1c798e',600,600,'晨光'],
+  ['photo-1441974231531-c6227db76b6e',600,600,'森林'],
+];
+
+function renderGrid(elId, data, w, h){
+  const el=document.getElementById(elId);
+  data.forEach(([id,pw,ph,cap])=>{
+    const d=document.createElement('div');d.className='item';
+    d.innerHTML='<img src="'+src(id,pw,ph)+'" loading=lazy><div class=cap>'+cap+'</div>';
+    d.onclick=()=>{document.getElementById('lbImg').src=src(id,1200,1200);document.getElementById('lb').classList.add('on')};
+    el.appendChild(d);
+  });
+}
+
+function renderRow(elId, data){
+  const el=document.getElementById(elId);
+  data.forEach(([id,pw,ph,cap])=>{
+    const d=document.createElement('div');d.className='item';
+    d.innerHTML='<img src="'+src(id,pw,ph)+'" loading=lazy>';
+    el.appendChild(d);
+  });
+}
+
+renderGrid('g-wedding',wedding,600,900);
+renderGrid('g-portrait',portrait,600,900);
+renderRow('g-travel',travelFull);
+renderGrid('g-travel-more',travelMore,600,600);
 </script>
 </body>
 </html>
