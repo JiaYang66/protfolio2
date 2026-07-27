@@ -147,14 +147,18 @@ function switchTab(i){
 }
 
 const U='https://images.unsplash.com/';
-function src(id,w,h){return U+id+'?w='+w+'&h='+h+'&fit=crop&q=80&auto=format'}
+function src(id,w,h){if(id.startsWith('photo-'))return U+id+'?w='+w+'&h='+h+'&fit=crop&q=80&auto=format';return id}
 
 // Wedding photos
 const wedding=[
-  ['photo-1511285560929-80b456fea0bc',600,900,'交换誓言'],
-  ['photo-1583939003579-730e3918a45a',600,900,'戒指'],
-  ['photo-1507504031003-b417219a0fde',600,900,'白纱'],
-  ['photo-1519741497674-611481863552',600,900,'第一支舞'],
+  ['wedding/wedding_01.jpg',600,900,''],
+  ['wedding/wedding_04.jpg',600,900,''],
+  ['wedding/wedding_07.jpg',600,900,''],
+  ['wedding/wedding_10.jpg',600,900,''],
+  ['wedding/wedding_13.jpg',600,900,''],
+  ['wedding/wedding_16.jpg',600,900,''],
+  ['wedding/wedding_20.jpg',600,900,''],
+  ['wedding/wedding_24.jpg',600,900,''],
 ];
 
 // Portrait photos
